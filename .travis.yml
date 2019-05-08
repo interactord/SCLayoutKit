@@ -20,15 +20,17 @@ before_script:
 
 script:
   - set -o pipefail
-  - xcodebuild clean build test
+  - xcodebuild clean build
     -workspace "$PROJECT"
     -scheme "$SCHEME"
     -sdk "$IOS_SDK"
     -destination "$DESTINATION"
     -configuration Debug
-    -enableCodeCoverage YES
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
 
 notifications:
   slack: interactord:Z4o1u31lio6owH5ic2qWuSGo
   on_success: always
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -j SCLayoutKit --cover-xml
