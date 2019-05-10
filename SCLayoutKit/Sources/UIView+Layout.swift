@@ -25,7 +25,7 @@ extension UIView {
 	}
 
 	@discardableResult
-	public func setLeadingAnchor(_ anchor: NSLayoutXAxisAnchor, _ padding: CGFloat = 0) -> Self {
+	public func setLeadingAnchor(_ anchor: NSLayoutXAxisAnchor, padding: CGFloat = 0) -> Self {
 		translatesAutoresizingMaskIntoConstraints = false
 		var anchoredConstraints = AnchoredConstraints()
 		anchoredConstraints.leading = leadingAnchor.constraint(equalTo: anchor, constant: padding)
