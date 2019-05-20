@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "SCLayoutKit"
-    s.version      = "1.0.0"
+    s.version      = "1.0.1"
     s.summary      = "SCLayoutKit is autolayout helper kit"
     s.description  = <<-DESC
     SCLayoutKit aim to
