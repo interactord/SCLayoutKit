@@ -53,7 +53,7 @@ extension UIView {
   }
 
   @discardableResult
-  public func setWithAnchor(_ width: CGFloat) -> Self {
+  public func setWidthAnchor(_ width: CGFloat) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
     anchoredConstraints.width = widthAnchor.constraint(equalToConstant: width)
@@ -67,6 +67,24 @@ extension UIView {
     var anchoredConstraints = AnchoredConstraints()
     anchoredConstraints.height = heightAnchor.constraint(equalToConstant: height)
     anchoredConstraints.height?.isActive = true
+    return self
+  }
+
+  @discardableResult
+  public func setCenterXAnchor(_ anchor: NSLayoutXAxisAnchor, offset: CGFloat = 0) -> Self {
+    translatesAutoresizingMaskIntoConstraints = false
+    var anchoredConstraints = AnchoredConstraints()
+    anchoredConstraints.centerX = centerXAnchor.constraint(equalTo: anchor, constant: offset)
+    anchoredConstraints.centerX?.isActive = true
+    return self
+  }
+
+  @discardableResult
+  public func setCenterYAnchor(_ anchor: NSLayoutYAxisAnchor, offset: CGFloat = 0) -> Self {
+    translatesAutoresizingMaskIntoConstraints = false
+    var anchoredConstraints = AnchoredConstraints()
+    anchoredConstraints.centerY = centerYAnchor.constraint(equalTo: anchor, constant: offset)
+    anchoredConstraints.centerY?.isActive = true
     return self
   }
 
