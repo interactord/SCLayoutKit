@@ -12,42 +12,84 @@ public struct AnchoredConstraints {
   public var top, leading, bottom, trailing, width, height, centerX, centerY: NSLayoutConstraint?
 }
 
+public enum Relation {
+  case equal
+  case greatThenOrEqual
+  case lessThenOrEqual
+}
+
 extension UIView {
 
   @discardableResult
-  public func setTopAnchor(_ anchor: NSLayoutYAxisAnchor, padding: CGFloat = 0) -> Self {
+  public func setTopAnchor(_ anchor: NSLayoutYAxisAnchor, relation: Relation = .equal, padding: CGFloat = 0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.top = topAnchor.constraint(equalTo: anchor, constant: padding)
+
+    switch relation {
+    case .equal:
+      anchoredConstraints.top = topAnchor.constraint(equalTo: anchor, constant: padding)
+    case .greatThenOrEqual:
+      anchoredConstraints.top = topAnchor.constraint(greaterThanOrEqualTo: anchor, constant: padding)
+    case .lessThenOrEqual:
+      anchoredConstraints.top = topAnchor.constraint(lessThanOrEqualTo: anchor, constant: padding)
+    }
+
     anchoredConstraints.top?.isActive = true
 
     return self
   }
 
   @discardableResult
-  public func setLeadingAnchor(_ anchor: NSLayoutXAxisAnchor, padding: CGFloat = 0) -> Self {
+  public func setLeadingAnchor(_ anchor: NSLayoutXAxisAnchor, relation: Relation = .equal, padding: CGFloat = 0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.leading = leadingAnchor.constraint(equalTo: anchor, constant: padding)
+
+    switch relation {
+    case .equal:
+      anchoredConstraints.leading = leadingAnchor.constraint(equalTo: anchor, constant: padding)
+    case .greatThenOrEqual:
+      anchoredConstraints.leading = leadingAnchor.constraint(greaterThanOrEqualTo: anchor, constant: padding)
+    case .lessThenOrEqual:
+      anchoredConstraints.leading = leadingAnchor.constraint(lessThanOrEqualTo: anchor, constant: padding)
+    }
+
     anchoredConstraints.leading?.isActive = true
 
     return self
   }
 
   @discardableResult
-  public func setBottomAnchor(_ anchor: NSLayoutYAxisAnchor, padding: CGFloat = 0) -> Self {
+  public func setBottomAnchor(_ anchor: NSLayoutYAxisAnchor, relation: Relation = .equal, padding: CGFloat = 0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.bottom = bottomAnchor.constraint(equalTo: anchor, constant: -padding)
+
+    switch relation {
+    case .equal:
+      anchoredConstraints.bottom = bottomAnchor.constraint(equalTo: anchor, constant: -padding)
+    case .greatThenOrEqual:
+      anchoredConstraints.bottom = bottomAnchor.constraint(greaterThanOrEqualTo: anchor, constant: -padding)
+    case .lessThenOrEqual:
+      anchoredConstraints.bottom = bottomAnchor.constraint(lessThanOrEqualTo: anchor, constant: -padding)
+    }
+
     anchoredConstraints.bottom?.isActive = true
     return self
   }
 
   @discardableResult
-  public func setTrailingAnchor(_ anchor: NSLayoutXAxisAnchor, padding: CGFloat = 0) -> Self {
+  public func setTrailingAnchor(_ anchor: NSLayoutXAxisAnchor, relation: Relation = .equal, padding: CGFloat = 0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.trailing = trailingAnchor.constraint(equalTo: anchor, constant: -padding)
+
+    switch relation {
+    case .equal:
+      anchoredConstraints.trailing = trailingAnchor.constraint(equalTo: anchor, constant: -padding)
+    case .greatThenOrEqual:
+      anchoredConstraints.trailing = trailingAnchor.constraint(greaterThanOrEqualTo: anchor, constant: -padding)
+    case .lessThenOrEqual:
+      anchoredConstraints.trailing = trailingAnchor.constraint(lessThanOrEqualTo: anchor, constant: -padding)
+    }
+
     anchoredConstraints.trailing?.isActive = true
     return self
   }
