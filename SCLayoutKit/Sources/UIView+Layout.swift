@@ -104,11 +104,29 @@ extension UIView {
   }
 
   @discardableResult
+  public func setWidthAnchor(_ anchor: NSLayoutDimension, multiplier: CGFloat = 1.0) -> Self {
+    translatesAutoresizingMaskIntoConstraints = false
+    var anchoredConstraints = AnchoredConstraints()
+    anchoredConstraints.width = widthAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier )
+    anchoredConstraints.width?.isActive = true
+    return self
+  }
+
+  @discardableResult
   public func setHeightAnchor(_ height: CGFloat) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
     anchoredConstraints.height = heightAnchor.constraint(equalToConstant: height)
     anchoredConstraints.height?.isActive = true
+    return self
+  }
+
+   @discardableResult
+  public func setHeightAnchor(_ anchor: NSLayoutDimension, multiplier: CGFloat = 1.0) -> Self {
+    translatesAutoresizingMaskIntoConstraints = false
+    var anchoredConstraints = AnchoredConstraints()
+    anchoredConstraints.width = heightAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier )
+    anchoredConstraints.width?.isActive = true
     return self
   }
 
