@@ -107,7 +107,7 @@ extension UIView {
   public func setWidthAnchor(_ anchor: NSLayoutDimension, multiplier: CGFloat = 1.0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.width = widthAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier )
+    anchoredConstraints.width = widthAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier)
     anchoredConstraints.width?.isActive = true
     return self
   }
@@ -121,12 +121,28 @@ extension UIView {
     return self
   }
 
-   @discardableResult
+  @discardableResult
   public func setHeightAnchor(_ anchor: NSLayoutDimension, multiplier: CGFloat = 1.0) -> Self {
     translatesAutoresizingMaskIntoConstraints = false
     var anchoredConstraints = AnchoredConstraints()
-    anchoredConstraints.width = heightAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier )
+    anchoredConstraints.width = heightAnchor.constraint(equalTo: anchor, multiplier: multiplier > 1.0 ? 1.0 : multiplier)
     anchoredConstraints.width?.isActive = true
+    return self
+  }
+
+  @discardableResult
+  public func setHeightAnchor(_ height: CGFloat, relation: Relation = .equal) -> Self {
+    translatesAutoresizingMaskIntoConstraints = false
+    var anchoredConstraints = AnchoredConstraints()
+    switch relation {
+    case .equal:
+      anchoredConstraints.height = heightAnchor.constraint(equalToConstant: height)
+    case .greatThenOrEqual:
+      anchoredConstraints.height = heightAnchor.constraint(greaterThanOrEqualToConstant: height)
+    case .lessThenOrEqual:
+      anchoredConstraints.height = heightAnchor.constraint(lessThanOrEqualToConstant: height)
+    }
+    anchoredConstraints.height?.isActive = true
     return self
   }
 
